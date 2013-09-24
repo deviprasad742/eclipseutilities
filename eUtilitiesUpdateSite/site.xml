@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/eUtilitiesFeature_1.0.0.201309242355.jar" id="eUtilitiesFeature" version="1.0.0.201309242355">
+      <category name="Eclipse_Utility"/>
+   </feature>
+   <category-def name="Eclipse_Utility" label="Eclipse Utilities">
+      <description>
+         Collection of eclipse utilities
+      </description>
+   </category-def>
+</site>
