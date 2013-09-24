@@ -28,12 +28,12 @@ public class EclipseTitleCustomizerStartup implements IStartup {
 	private static final String WS_NAME_KEY = "$wsName";
 	private static final String TITLE_FORMAT_KEY = "titleFormat";
 
-	@Override
+	
 	public void earlyStartup() {
 		initializeName();
 
 		Display.getDefault().syncExec(new Runnable() {
-			@Override
+			
 			public void run() {
 				IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 				activeWorkbenchWindow.getShell().setText(customizedName);
@@ -41,7 +41,7 @@ public class EclipseTitleCustomizerStartup implements IStartup {
 		});
 
 		Display.getDefault().asyncExec(new Runnable() {
-			@Override
+			
 			public void run() {
 				addListeners();
 			}
@@ -50,7 +50,7 @@ public class EclipseTitleCustomizerStartup implements IStartup {
 
 	private void updateName() {
 		Display.getDefault().asyncExec(new Runnable() {
-			@Override
+			
 			public void run() {
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell().setText(customizedName);
 			}
@@ -114,12 +114,12 @@ public class EclipseTitleCustomizerStartup implements IStartup {
 		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		activeWorkbenchWindow.addPerspectiveListener(new IPerspectiveListener() {
 
-			@Override
+			
 			public void perspectiveChanged(IWorkbenchPage page, IPerspectiveDescriptor perspective, String changeId) {
 
 			}
 
-			@Override
+			
 			public void perspectiveActivated(IWorkbenchPage page, IPerspectiveDescriptor perspective) {
 				updateName();
 			}
@@ -127,27 +127,27 @@ public class EclipseTitleCustomizerStartup implements IStartup {
 
 		activeWorkbenchWindow.getActivePage().addPartListener(new IPartListener() {
 
-			@Override
+			
 			public void partOpened(IWorkbenchPart part) {
 
 			}
 
-			@Override
+			
 			public void partDeactivated(IWorkbenchPart part) {
 				updateName();
 			}
 
-			@Override
+			
 			public void partClosed(IWorkbenchPart part) {
 
 			}
 
-			@Override
+			
 			public void partBroughtToTop(final IWorkbenchPart part) {
 				updateName();
 			}
 
-			@Override
+			
 			public void partActivated(final IWorkbenchPart part) {
 				updateName();
 			}
