@@ -52,7 +52,10 @@ public class EclipseTitleCustomizerStartup implements IStartup {
 		Display.getDefault().asyncExec(new Runnable() {
 			
 			public void run() {
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell().setText(customizedName);
+				IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+				if (workbenchWindow != null) {
+					workbenchWindow.getShell().setText(customizedName);
+				}
 			}
 		});
 	}
