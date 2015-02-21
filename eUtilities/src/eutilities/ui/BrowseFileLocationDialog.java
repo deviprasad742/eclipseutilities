@@ -42,6 +42,9 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.dnd.Clipboard;
+import org.eclipse.swt.dnd.TextTransfer;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
@@ -451,10 +454,26 @@ public class BrowseFileLocationDialog extends PopupDialog {
 		
 		try {
 			Desktop.getDesktop().browse(selectedFile.toURI());
+			copyToClipBoard(selectedFile.getAbsolutePath());
 		} catch (IOException e) {
 			Activator.getDefault().logAndShowException(e);
 		}
 	}
+	
+	
+	private void copyToClipBoard(String absPath) {
+		Clipboard clipboard = null;
+		// set to clipboard
+		try {
+			clipboard = new Clipboard(Display.getDefault());
+			clipboard.setContents(new Object[]{absPath}, new Transfer[] {TextTransfer.getInstance()});
+		} finally {
+			if (clipboard != null) {
+				clipboard.dispose();
+			}
+		}
+	}
+	
 	
 	
 }
